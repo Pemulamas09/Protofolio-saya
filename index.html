@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nama - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .admin-panel {
+            display: none;
+        }
+        .admin-panel.active {
+            display: block;
+        }
+        .modal {
+            display: none;
+        }
+        .modal.active {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <h1 class="text-xl font-bold text-gray-800">Nama </h1>
+                </div>
+                <div class="flex items-center space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-blue-600 transition duration-300">Beranda</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition duration-300">Tentang</a>
+                    <a href="#portfolio" class="text-gray-700 hover:text-blue-600 transition duration-300">Portofolio</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 transition duration-300">Kontak</a>
+                    <button onclick="showAdminLogin()" class="text-gray-500 hover:text-blue-600 transition duration-300" title="Admin Panel">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg min-h-screen flex items-center justify-center pt-16">
+        <div class="text-center text-white px-4">
+            <div class="mb-8">
+                <div id="heroProfileImage" class="w-32 h-32 mx-auto rounded-full bg-white/20 flex items-center justify-center mb-6 overflow-hidden">
+                    <i class="fas fa-user text-6xl text-white"></i>
+                </div>
+            </div>
+            <h1 id="heroName" class="text-5xl md:text-6xl font-bold mb-4">Nama </h1>
+            <p id="heroTitle" class="text-xl md:text-2xl mb-8 opacity-90">Professional Developer & Designer</p>
+            <div class="flex justify-center space-x-4 flex-wrap gap-4">
+                <a href="#portfolio" class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
+                    Lihat Portofolio
+                </a>
+                <a href="#contact" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition duration-300">
+                    Hubungi Saya
+                </a>
+                <a id="herodriveLink" href="" target="_blank" class="bg-green-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-green-700 transition duration-300" style="display: none;">
+                    <i class="fab fa-google-drive mr-2"></i>Portfolio Drive
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Tentang Saya</h2>
+                <p id="aboutDescription" class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Saya adalah seorang developer dan designer yang berpengalaman dalam menciptakan solusi digital yang inovatif dan user-friendly.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-6 rounded-lg bg-gray-50 card-hover">
+                    <i class="fas fa-code text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Web Development</h3>
+                    <p class="text-gray-600">Pengembangan website modern dengan teknologi terkini</p>
+                </div>
+                <div class="text-center p-6 rounded-lg bg-gray-50 card-hover">
+                    <i class="fas fa-paint-brush text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">UI/UX Design</h3>
+                    <p class="text-gray-600">Desain antarmuka yang menarik dan mudah digunakan</p>
+                </div>
+                <div class="text-center p-6 rounded-lg bg-gray-50 card-hover">
+                    <i class="fas fa-mobile-alt text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Mobile Apps</h3>
+                    <p class="text-gray-600">Pengembangan aplikasi mobile yang responsif</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Portofolio</h2>
+                <p class="text-xl text-gray-600">Beberapa proyek yang telah saya kerjakan</p>
+            </div>
+            <div id="portfolioGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Portfolio items will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Hubungi Saya</h2>
+                <p class="text-xl text-gray-600">Mari berkolaborasi untuk proyek Anda selanjutnya</p>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-envelope text-2xl text-blue-600"></i>
+                            <div>
+                                <h3 class="font-semibold">Email</h3>
+                                <p id="contactEmail" class="text-gray-600">rahmat.govin@email.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-phone text-2xl text-blue-600"></i>
+                            <div>
+                                <h3 class="font-semibold">Telepon</h3>
+                                <p id="contactPhone" class="text-gray-600">+62 123 456 7890</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-map-marker-alt text-2xl text-blue-600"></i>
+                            <div>
+                                <h3 class="font-semibold">Lokasi</h3>
+                                <p id="contactLocation" class="text-gray-600">Jakarta, Indonesia</p>
+                            </div>
+                        </div>
+                        <div id="contactDriveSection" class="flex items-center space-x-4" style="display: none;">
+                            <i class="fab fa-google-drive text-2xl text-green-600"></i>
+                            <div>
+                                <h3 class="font-semibold">Portfolio Drive</h3>
+                                <a id="contactDriveLink" href="" target="_blank" class="text-green-600 hover:text-green-800 font-medium">Lihat Portfolio Lengkap</a>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="space-y-4" onsubmit="handleContactForm(event)">
+                        <input type="text" placeholder="Nama Anda" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                        <input type="email" placeholder="Email Anda" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                        <textarea placeholder="Pesan Anda" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required></textarea>
+                        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+                            Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Login Modal -->
+    <div id="adminLoginModal" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center">
+        <div class="bg-white p-8 rounded-lg max-w-md w-full mx-4">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-user-shield text-2xl text-blue-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold">Admin Login</h3>
+            </div>
+            <form onsubmit="adminLogin(event)">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+                    <input type="text" id="adminUsername" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                    <input type="password" id="adminPassword" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                <div class="flex justify-between">
+                    <button type="button" onclick="hideAdminLogin()" class="px-4 py-2 text-gray-600 hover:text-gray-800">Batal</button>
+                    <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Login</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="admin-panel fixed inset-0 bg-white z-50 overflow-y-auto">
+        <div class="max-w-7xl mx-auto px-4 py-8">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold">Admin Panel - Kelola Portofolio</h2>
+                <button onclick="closeAdminPanel()" class="text-gray-500 hover:text-red-600 transition duration-300 text-2xl" title="Tutup Admin Panel">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Profile Management -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h3 class="text-2xl font-bold mb-6">Kelola Profil</h3>
+                <form onsubmit="updateProfile(event)" class="space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Nama Lengkap</label>
+                            <input type="text" id="profileName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Profesi/Jabatan</label>
+                            <input type="text" id="profileTitle" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Deskripsi Singkat</label>
+                        <textarea id="profileDescription" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required></textarea>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Upload Foto Profil</label>
+                            <div class="space-y-2">
+                                <input type="file" id="profileImageFile" accept="image/*" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" onchange="handleImageUpload(this, 'profileImageUrl')">
+                                <input type="url" id="profileImageUrl" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Atau masukkan URL foto profil">
+                                <p class="text-xs text-gray-500">Upload foto profil atau masukkan URL</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Preview Foto Profil</label>
+                            <div id="profileImagePreview" class="w-24 h-24 border-2 border-dashed border-gray-300 rounded-full flex items-center justify-center text-gray-500 text-sm mx-auto">
+                                <i class="fas fa-user text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                            <input type="email" id="profileEmail" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Telepon</label>
+                            <input type="text" id="profilePhone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Lokasi</label>
+                            <input type="text" id="profileLocation" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Link Google Drive Portfolio</label>
+                        <input type="url" id="profileDriveLink" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="https://drive.google.com/drive/folders/...">
+                        <p class="text-xs text-gray-500">Link ke folder Google Drive yang berisi portfolio lengkap</p>
+                    </div>
+                    <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-300">
+                        <i class="fas fa-save mr-2"></i>Simpan Profil
+                    </button>
+                </form>
+            </div>
+
+            <!-- Add New Portfolio Item -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h3 class="text-2xl font-bold mb-6">Tambah Proyek Baru</h3>
+                <form onsubmit="addPortfolioItem(event)" class="space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Judul Proyek</label>
+                            <input type="text" id="newTitle" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Kategori</label>
+                            <select id="newCategory" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                                <option value="Web Development">Web Development</option>
+                                <option value="Mobile App">Mobile App</option>
+                                <option value="UI/UX Design">UI/UX Design</option>
+                                <option value="Other">Lainnya</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Deskripsi</label>
+                        <textarea id="newDescription" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required></textarea>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Upload Foto</label>
+                            <div class="space-y-2">
+                                <input type="file" id="newImageFile" accept="image/*" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" onchange="handleImageUpload(this, 'newImageUrl')">
+                                <input type="url" id="newImageUrl" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Atau masukkan URL gambar" required>
+                                <p class="text-xs text-gray-500">Upload file gambar atau masukkan URL</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">URL Proyek (Opsional)</label>
+                            <input type="url" id="newProjectUrl" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="https://example.com">
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Link Google Drive (Opsional)</label>
+                            <input type="url" id="newDriveUrl" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="https://drive.google.com/file/d/...">
+                            <p class="text-xs text-gray-500">Link untuk dokumentasi atau file tambahan</p>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Preview Gambar</label>
+                            <div id="newImagePreview" class="w-full h-24 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center text-gray-500 text-sm">
+                                Tidak ada gambar
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Teknologi 1</label>
+                            <input type="text" id="newTech1" class="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="React">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Teknologi 2</label>
+                            <input type="text" id="newTech2" class="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="Node.js">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Teknologi 3</label>
+                            <input type="text" id="newTech3" class="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="MongoDB">
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+                        <i class="fas fa-plus mr-2"></i>Tambah Proyek
+                    </button>
+                </form>
+            </div>
+
+            <!-- Existing Portfolio Items -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-2xl font-bold mb-6">Proyek Saat Ini</h3>
+                <div id="adminPortfolioList" class="space-y-6">
+                    <!-- Portfolio items for editing will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 Nama . Semua hak dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Portfolio data storage
+        let portfolioData = [
+            {
+                id: 1,
+                title: "E-Commerce Platform",
+                description: "Platform jual beli online modern dengan fitur lengkap seperti payment gateway, inventory management, dan analytics dashboard.",
+                category: "Web Development",
+                image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop",
+                link: "https://example.com/ecommerce",
+                driveLink: "https://drive.google.com/file/d/1xP_WVtAfeKmZDeXCxkY1j2pyDIti3-O7/view?usp=drive_link",
+                technologies: ["React", "Node.js", "MongoDB"]
+            },
+            {
+                id: 2,
+                title: "Mobile Banking App",
+                description: "Aplikasi perbankan mobile yang aman dengan fitur transfer, pembayaran, dan investasi yang user-friendly.",
+                category: "Mobile App",
+                image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300&fit=crop",
+                link: "https://example.com/banking",
+                driveLink: "",
+                technologies: ["React Native", "Firebase", "Node.js"]
+            },
+            {
+                id: 3,
+                title: "Corporate Website",
+                description: "Website perusahaan yang profesional dengan desain modern, SEO optimized, dan fully responsive.",
+                category: "Web Development",
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
+                link: "https://example.com/corporate",
+                driveLink: "",
+                technologies: ["HTML5", "CSS3", "JavaScript"]
+            }
+        ];
+
+        // Admin credentials
+        const adminCredentials = {
+            username: "admin",
+            password: "tegar"
+        };
+
+        let isAdminLoggedIn = false;
+
+        // Profile data
+        let profileData = {
+            name: "Rahmat Govin Tarwiyan",
+            title: "Professional Developer & Designer",
+            description: "Saya adalah seorang developer dan designer yang berpengalaman dalam menciptakan solusi digital yang inovatif dan user-friendly.",
+            profileImage: "",
+            driveLink: "https://drive.google.com/drive/folders/1xP_WVtAfeKmZDeXCxkY1j2pyDIti3-O7?usp=sharing",
+            email: "rahmat.govin@email.com",
+            phone: "+62 123 456 7890",
+            location: "Jakarta, Indonesia"
+        };
+
+        // Load profile data
+        function loadProfile() {
+            // Update hero section
+            document.getElementById('heroName').textContent = profileData.name;
+            document.getElementById('heroTitle').textContent = profileData.title;
+            
+            // Update profile image
+            const heroProfileImage = document.getElementById('heroProfileImage');
+            if (profileData.profileImage && profileData.profileImage !== '') {
+                heroProfileImage.innerHTML = `<img src="${profileData.profileImage}" alt="Profile" class="w-full h-full object-cover rounded-full">`;
+            } else {
+                heroProfileImage.innerHTML = '<i class="fas fa-user text-6xl text-white"></i>';
+            }
+            
+            // Update Drive link in hero
+            const heroDriveLink = document.getElementById('herodriveLink');
+            if (profileData.driveLink && profileData.driveLink !== '') {
+                heroDriveLink.href = profileData.driveLink;
+                heroDriveLink.style.display = 'inline-block';
+            } else {
+                heroDriveLink.style.display = 'none';
+            }
+            
+            // Update about section
+            document.getElementById('aboutDescription').textContent = profileData.description;
+            
+            // Update contact section
+            document.getElementById('contactEmail').textContent = profileData.email;
+            document.getElementById('contactPhone').textContent = profileData.phone;
+            document.getElementById('contactLocation').textContent = profileData.location;
+            
+            // Update Drive link in contact
+            const contactDriveSection = document.getElementById('contactDriveSection');
+            const contactDriveLink = document.getElementById('contactDriveLink');
+            if (profileData.driveLink && profileData.driveLink !== '') {
+                contactDriveLink.href = profileData.driveLink;
+                contactDriveSection.style.display = 'flex';
+            } else {
+                contactDriveSection.style.display = 'none';
+            }
+        }
+
+        // Load admin profile form
+        function loadAdminProfile() {
+            document.getElementById('profileName').value = profileData.name;
+            document.getElementById('profileTitle').value = profileData.title;
+            document.getElementById('profileDescription').value = profileData.description;
+            document.getElementById('profileImageUrl').value = profileData.profileImage || '';
+            document.getElementById('profileDriveLink').value = profileData.driveLink || '';
+            document.getElementById('profileEmail').value = profileData.email;
+            document.getElementById('profilePhone').value = profileData.phone;
+            document.getElementById('profileLocation').value = profileData.location;
+            
+            // Update preview
+            const preview = document.getElementById('profileImagePreview');
+            if (profileData.profileImage && profileData.profileImage !== '') {
+                preview.innerHTML = `<img src="${profileData.profileImage}" alt="Preview" class="w-full h-full object-cover rounded-full">`;
+            } else {
+                preview.innerHTML = '<i class="fas fa-user text-2xl"></i>';
+            }
+        }
+
+        // Update profile
+        function updateProfile(event) {
+            event.preventDefault();
+            
+            profileData.name = document.getElementById('profileName').value;
+            profileData.title = document.getElementById('profileTitle').value;
+            profileData.description = document.getElementById('profileDescription').value;
+            profileData.profileImage = document.getElementById('profileImageUrl').value;
+            profileData.driveLink = document.getElementById('profileDriveLink').value;
+            profileData.email = document.getElementById('profileEmail').value;
+            profileData.phone = document.getElementById('profilePhone').value;
+            profileData.location = document.getElementById('profileLocation').value;
+            
+            // Save to localStorage for persistence
+            localStorage.setItem('portfolioProfile', JSON.stringify(profileData));
+            
+            loadProfile();
+            showNotification('Profil berhasil diperbarui dan tersimpan!', 'success');
+        }
+
+        // Load portfolio items
+        function loadPortfolio() {
+            const portfolioGrid = document.getElementById('portfolioGrid');
+            portfolioGrid.innerHTML = '';
+
+            portfolioData.forEach(item => {
+                const portfolioItem = document.createElement('div');
+                portfolioItem.className = 'bg-white rounded-lg shadow-lg overflow-hidden card-hover';
+                
+                const techBadges = item.technologies ? item.technologies.map(tech => 
+                    `<span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full mr-2 mb-2">${tech}</span>`
+                ).join('') : '';
+
+                portfolioItem.innerHTML = `
+                    <div class="relative">
+                        <img src="${item.image}" alt="${item.title}" class="w-full h-48 object-cover" onerror="this.src='https://via.placeholder.com/400x300/667eea/ffffff?text=No+Image'; this.alt='Image not available';">
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-white/90 text-gray-800 text-xs px-2 py-1 rounded-full">${item.category}</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">${item.title}</h3>
+                        <p class="text-gray-600 mb-4 text-sm">${item.description}</p>
+                        <div class="mb-4">
+                            ${techBadges}
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            ${item.link && item.link !== '#' ? `
+                                <a href="${item.link}" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold text-sm">
+                                    <i class="fas fa-external-link-alt mr-2"></i>Lihat Proyek
+                                </a>
+                            ` : ''}
+                            ${item.driveLink && item.driveLink !== '' ? `
+                                <a href="${item.driveLink}" target="_blank" class="inline-flex items-center text-green-600 hover:text-green-800 font-semibold text-sm">
+                                    <i class="fab fa-google-drive mr-2"></i>Drive
+                                </a>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+                portfolioGrid.appendChild(portfolioItem);
+            });
+        }
+
+        // Load admin portfolio list
+        function loadAdminPortfolio() {
+            const adminList = document.getElementById('adminPortfolioList');
+            adminList.innerHTML = '';
+
+            portfolioData.forEach(item => {
+                const adminItem = document.createElement('div');
+                adminItem.className = 'border border-gray-300 rounded-lg p-6 bg-gray-50';
+                adminItem.innerHTML = `
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h4 class="text-lg font-semibold">${item.title}</h4>
+                            <p class="text-sm text-gray-600">${item.category}</p>
+                        </div>
+                        <button onclick="deletePortfolioItem(${item.id})" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 text-sm">
+                            <i class="fas fa-trash mr-1"></i>Hapus
+                        </button>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Judul</label>
+                            <input type="text" value="${item.title}" onchange="updatePortfolioItem(${item.id}, 'title', this.value)" class="w-full px-3 py-2 border border-gray-300 rounded text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Kategori</label>
+                            <select onchange="updatePortfolioItem(${item.id}, 'category', this.value)" class="w-full px-3 py-2 border border-gray-300 rounded text-sm">
+                                <option value="Web Development" ${item.category === 'Web Development' ? 'selected' : ''}>Web Development</option>
+                                <option value="Mobile App" ${item.category === 'Mobile App' ? 'selected' : ''}>Mobile App</option>
+                                <option value="UI/UX Design" ${item.category === 'UI/UX Design' ? 'selected' : ''}>UI/UX Design</option>
+                                <option value="Other" ${item.category === 'Other' ? 'selected' : ''}>Lainnya</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Deskripsi</label>
+                        <textarea onchange="updatePortfolioItem(${item.id}, 'description', this.value)" class="w-full px-3 py-2 border border-gray-300 rounded text-sm" rows="2">${item.description}</textarea>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Upload Foto Baru</label>
+                            <input type="file" accept="image/*" onchange="handleImageUpload(this, 'image_${item.id}')" class="w-full px-3 py-2 border border-gray-300 rounded text-sm mb-2">
+                            <input type="url" id="image_${item.id}" value="${item.image}" onchange="updatePortfolioItem(${item.id}, 'image', this.value)" class="w-full px-3 py-2 border border-gray-300 rounded text-sm" placeholder="URL Gambar">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Preview</label>
+                            <div class="w-full h-20 border border-gray-300 rounded overflow-hidden">
+                                <img src="${item.image}" alt="Preview" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/100x80/f3f4f6/9ca3af?text=No+Image'">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">URL Proyek</label>
+                            <input type="url" value="${item.link || ''}" onchange="updatePortfolioItem(${item.id}, 'link', this.value)" class="w-full px-3 py-2 border border-gray-300 rounded text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Link Google Drive</label>
+                            <input type="url" value="${item.driveLink || ''}" onchange="updatePortfolioItem(${item.id}, 'driveLink', this.value)" class="w-full px-3 py-2 border border-gray-300 rounded text-sm">
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Teknologi 1</label>
+                            <input type="text" value="${item.technologies ? item.technologies[0] || '' : ''}" onchange="updateTechnology(${item.id}, 0, this.value)" class="w-full px-3 py-2 border border-gray-300 rounded text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Teknologi 2</label>
+                            <input type="text" value="${item.technologies ? item.technologies[1] || '' : ''}" onchange="updateTechnology(${item.id}, 1, this.value)" class="w-full px-3 py-2 border border-gray-300 rounded text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Teknologi 3</label>
+                            <input type="text" value="${item.technologies ? item.technologies[2] || '' : ''}" onchange="updateTechnology(${item.id}, 2, this.value)" class="w-full px-3 py-2 border border-gray-300 rounded text-sm">
+                        </div>
+                    </div>
+                    <div class="flex justify-end">
+                        <button onclick="savePortfolioItem(${item.id})" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-300 text-sm">
+                            <i class="fas fa-save mr-2"></i>Simpan Perubahan
+                        </button>
+                    </div>
+                `;
+                adminList.appendChild(adminItem);
+            });
+        }
+
+        // Admin functions
+        function showAdminLogin() {
+            document.getElementById('adminLoginModal').classList.add('active');
+        }
+
+        function hideAdminLogin() {
+            document.getElementById('adminLoginModal').classList.remove('active');
+        }
+
+        function adminLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+
+            if (username === adminCredentials.username && password === adminCredentials.password) {
+                isAdminLoggedIn = true;
+                hideAdminLogin();
+                document.getElementById('adminPanel').classList.add('active');
+                loadAdminProfile();
+                loadAdminPortfolio();
+                
+                // Clear form
+                document.getElementById('adminUsername').value = '';
+                document.getElementById('adminPassword').value = '';
+                
+                showNotification('Login berhasil! Selamat datang di Admin Panel.', 'success');
+            } else {
+                showNotification('Username atau password salah!', 'error');
+            }
+        }
+
+        function logoutAdmin() {
+            if (confirm('Apakah Anda yakin ingin logout?')) {
+                isAdminLoggedIn = false;
+                document.getElementById('adminPanel').classList.remove('active');
+                
+                // Scroll to homepage
+                document.getElementById('home').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                alert('Logout berhasil! Anda telah keluar dari Admin Panel dan kembali ke beranda.');
+            }
+        }
+
+        function closeAdminPanel() {
+            isAdminLoggedIn = false;
+            document.getElementById('adminPanel').classList.remove('active');
+            
+            // Scroll to homepage
+            document.getElementById('home').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        function handleImageUpload(input, targetId) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const targetInput = document.getElementById(targetId);
+                    if (targetInput) {
+                        targetInput.value = e.target.result;
+                        
+                        // Update preview if it's for new item
+                        if (targetId === 'newImageUrl') {
+                            const preview = document.getElementById('newImagePreview');
+                            preview.innerHTML = `<img src="${e.target.result}" alt="Preview" class="w-full h-full object-cover rounded">`;
+                        }
+                        
+                        // Update preview if it's for profile image
+                        if (targetId === 'profileImageUrl') {
+                            const preview = document.getElementById('profileImagePreview');
+                            preview.innerHTML = `<img src="${e.target.result}" alt="Preview" class="w-full h-full object-cover rounded-full">`;
+                        }
+                        
+                        // If it's for existing item, trigger update
+                        if (targetId.startsWith('image_')) {
+                            const itemId = parseInt(targetId.replace('image_', ''));
+                            updatePortfolioItem(itemId, 'image', e.target.result);
+                        }
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function addPortfolioItem(event) {
+            event.preventDefault();
+            const title = document.getElementById('newTitle').value;
+            const category = document.getElementById('newCategory').value;
+            const description = document.getElementById('newDescription').value;
+            const image = document.getElementById('newImageUrl').value;
+            const link = document.getElementById('newProjectUrl').value;
+            const driveLink = document.getElementById('newDriveUrl').value;
+            const tech1 = document.getElementById('newTech1').value;
+            const tech2 = document.getElementById('newTech2').value;
+            const tech3 = document.getElementById('newTech3').value;
+
+            const technologies = [tech1, tech2, tech3].filter(tech => tech.trim() !== '');
+
+            const newItem = {
+                id: Date.now(),
+                title: title,
+                category: category,
+                description: description,
+                image: image,
+                link: link,
+                driveLink: driveLink,
+                technologies: technologies
+            };
+
+            portfolioData.push(newItem);
+            
+            // Save to localStorage for persistence
+            localStorage.setItem('portfolioData', JSON.stringify(portfolioData));
+            
+            loadPortfolio();
+            loadAdminPortfolio();
+
+            // Clear form
+            document.getElementById('newTitle').value = '';
+            document.getElementById('newCategory').value = 'Web Development';
+            document.getElementById('newDescription').value = '';
+            document.getElementById('newImageUrl').value = '';
+            document.getElementById('newProjectUrl').value = '';
+            document.getElementById('newDriveUrl').value = '';
+            document.getElementById('newTech1').value = '';
+            document.getElementById('newTech2').value = '';
+            document.getElementById('newTech3').value = '';
+            document.getElementById('newImageFile').value = '';
+            document.getElementById('newImagePreview').innerHTML = 'Tidak ada gambar';
+
+            showNotification(`Proyek "${title}" berhasil ditambahkan dan tersimpan!`, 'success');
+        }
+
+        function updatePortfolioItem(id, field, value) {
+            const item = portfolioData.find(item => item.id === id);
+            if (item) {
+                item[field] = value;
+                // Save to localStorage for persistence
+                localStorage.setItem('portfolioData', JSON.stringify(portfolioData));
+                loadPortfolio();
+            }
+        }
+
+        function updateTechnology(id, index, value) {
+            const item = portfolioData.find(item => item.id === id);
+            if (item) {
+                if (!item.technologies) item.technologies = [];
+                item.technologies[index] = value;
+                item.technologies = item.technologies.filter(tech => tech.trim() !== '');
+                // Save to localStorage for persistence
+                localStorage.setItem('portfolioData', JSON.stringify(portfolioData));
+                loadPortfolio();
+            }
+        }
+
+        function savePortfolioItem(id) {
+            const item = portfolioData.find(item => item.id === id);
+            if (item) {
+                loadPortfolio();
+                showNotification(`Perubahan proyek "${item.title}" berhasil disimpan!`, 'success');
+            }
+        }
+
+        function deletePortfolioItem(id) {
+            const item = portfolioData.find(item => item.id === id);
+            if (!item) return;
+            
+            // Show custom delete confirmation notification
+            showDeleteConfirmation(item);
+        }
+
+        function showDeleteConfirmation(item) {
+            // Create confirmation notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 z-50 bg-red-600 text-white p-6 rounded-lg shadow-lg max-w-md transform transition-all duration-300 translate-x-full';
+            
+            notification.innerHTML = `
+                <div class="flex items-start space-x-3">
+                    <i class="fas fa-exclamation-triangle text-2xl mt-1"></i>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-lg mb-2">Konfirmasi Hapus</h4>
+                        <p class="text-sm mb-4">Apakah Anda yakin ingin menghapus proyek "<strong>${item.title}</strong>"?</p>
+                        <p class="text-xs mb-4 opacity-90">Tindakan ini tidak dapat dibatalkan dan akan menghapus proyek secara permanen.</p>
+                        <div class="flex space-x-2">
+                            <button onclick="confirmDeleteItem(${item.id})" class="bg-white text-red-600 px-4 py-2 rounded font-semibold text-sm hover:bg-gray-100 transition duration-200">
+                                <i class="fas fa-trash mr-1"></i>Hapus Permanen
+                            </button>
+                            <button onclick="cancelDelete()" class="bg-red-500 text-white px-4 py-2 rounded font-semibold text-sm hover:bg-red-400 transition duration-200">
+                                Batal
+                            </button>
+                        </div>
+                    </div>
+                    <button onclick="cancelDelete()" class="text-white hover:text-gray-200 text-xl">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Store reference for cleanup
+            window.currentDeleteNotification = notification;
+            
+            // Animate in
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+            }, 100);
+            
+            // Auto remove after 10 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    cancelDelete();
+                }
+            }, 10000);
+        }
+
+        function confirmDeleteItem(id) {
+            const item = portfolioData.find(item => item.id === id);
+            if (!item) return;
+            
+            const itemTitle = item.title;
+            
+            // Remove from array
+            portfolioData = portfolioData.filter(item => item.id !== id);
+            
+            // Save to localStorage for persistence
+            localStorage.setItem('portfolioData', JSON.stringify(portfolioData));
+            
+            // Reload displays
+            loadPortfolio();
+            loadAdminPortfolio();
+            
+            // Remove confirmation notification
+            cancelDelete();
+            
+            // Show success notification
+            showNotification(`Proyek "${itemTitle}" berhasil dihapus secara permanen!`, 'success');
+        }
+
+        function cancelDelete() {
+            if (window.currentDeleteNotification && window.currentDeleteNotification.parentNode) {
+                window.currentDeleteNotification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    if (window.currentDeleteNotification && window.currentDeleteNotification.parentNode) {
+                        window.currentDeleteNotification.parentNode.removeChild(window.currentDeleteNotification);
+                    }
+                    window.currentDeleteNotification = null;
+                }, 300);
+            }
+        }
+
+        function showNotification(message, type = 'info') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 z-50 px-6 py-4 rounded-lg shadow-lg text-white font-medium transform transition-all duration-300 translate-x-full`;
+            
+            // Set color based on type
+            if (type === 'success') {
+                notification.classList.add('bg-green-600');
+            } else if (type === 'error') {
+                notification.classList.add('bg-red-600');
+            } else if (type === 'warning') {
+                notification.classList.add('bg-yellow-600');
+            } else {
+                notification.classList.add('bg-blue-600');
+            }
+            
+            notification.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : type === 'warning' ? 'fa-exclamation-triangle' : 'fa-info-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+            }, 100);
+            
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        function handleContactForm(event) {
+            event.preventDefault();
+            alert('Terima kasih! Pesan Anda telah diterima. Ini adalah demo form - dalam implementasi nyata, pesan akan dikirim ke server.');
+            event.target.reset();
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize portfolio on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved profile data from localStorage
+            const savedProfile = localStorage.getItem('portfolioProfile');
+            if (savedProfile) {
+                profileData = JSON.parse(savedProfile);
+            }
+            
+            // Load saved portfolio data from localStorage
+            const savedPortfolio = localStorage.getItem('portfolioData');
+            if (savedPortfolio) {
+                portfolioData = JSON.parse(savedPortfolio);
+            }
+            
+            loadProfile();
+            loadPortfolio();
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9817acf8e2dda3dc',t:'MTc1ODI3MDE1MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
